@@ -61,7 +61,7 @@ function useGetRefreshToken() {
       setHeader('Authorization', `Bearer ${data.accessToken}`);
       setEncryptStorage(storageKeys.REFRESH_TOKEN, data.refreshToken);
     }
-  }, [isSuccess]);
+  }, [isSuccess, data]); // data 추가(기존코드에는 없음)
 
   useEffect(() => {
     if (isError) {
@@ -94,7 +94,7 @@ function useLogout(mutationOptions?: UseMutationCustomOptions) {
     ...mutationOptions,
   });
 }
-
+// 인증관련 커스텀 훅
 function useAuth() {
   const signupMutation = useSignup();
   const refreshTokenQuery = useGetRefreshToken();
